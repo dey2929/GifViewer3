@@ -127,7 +127,7 @@ public class RequestBuilder<TranscodeType> implements Cloneable {
    *
    * @param thumbnailRequest The request to use to load the thumbnail.
    * @return This request builder.
-   * @see #thumbnail(float)
+   * see #thumbnail(float)
    *
    * <p> Recursive calls to thumbnail are supported. </p>
    */
@@ -163,7 +163,7 @@ public class RequestBuilder<TranscodeType> implements Cloneable {
    *                       the thumbnail.
    * @return This request builder.
    */
-  @SuppressWarnings("unchecked")
+/*  @SuppressWarnings("unchecked")
   public RequestBuilder<TranscodeType> thumbnail(float sizeMultiplier) {
     if (sizeMultiplier < 0f || sizeMultiplier > 1f) {
       throw new IllegalArgumentException("sizeMultiplier must be between 0 and 1");
@@ -171,7 +171,7 @@ public class RequestBuilder<TranscodeType> implements Cloneable {
     this.thumbSizeMultiplier = sizeMultiplier;
 
     return this;
-  }
+  }*/
 
   /**
    * Sets the specific model to load data for.
@@ -440,9 +440,9 @@ public class RequestBuilder<TranscodeType> implements Cloneable {
    * @see #submit(int, int)
    * @see #into(Target)
    */
-  public FutureTarget<TranscodeType> submit() {
+/*  public FutureTarget<TranscodeType> submit() {
     return submit(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL);
-  }
+  }*/
 
   /**
    * Returns a future that can be used to do a blocking get on a background thread.
@@ -508,10 +508,10 @@ public class RequestBuilder<TranscodeType> implements Cloneable {
    * {@link RequestManager#clear(Target)}
    * @see #preload(int, int)
    */
-  public Target<TranscodeType> preload() {
+ /* public Target<TranscodeType> preload() {
     return preload(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL);
   }
-
+*/
   /**
    * Loads the original unmodified data into the cache and calls the given Target with the cache
    * File.
@@ -522,31 +522,31 @@ public class RequestBuilder<TranscodeType> implements Cloneable {
    *
    * @deprecated Use {@link RequestManager#downloadOnly()} and {@link #into(Target)}.
    */
-  @Deprecated
+/*  @Deprecated
   public <Y extends Target<File>> Y downloadOnly(Y target) {
     return getDownloadOnlyRequest().into(target);
-  }
+  }*/
 
   /**
    * Loads the original unmodified data into the cache and returns a
    * {@link java.util.concurrent.Future} that can be used to retrieve the cache File containing the
    * data.
    *
-   * @param width  The width in pixels to use to fetch the data.
-   * @param height The height in pixels to use to fetch the data.
+   * param width  The width in pixels to use to fetch the data.
+   * param height The height in pixels to use to fetch the data.
    * @return A {@link java.util.concurrent.Future} that can be used to retrieve the cache File
    * containing the data.
    *
    * @deprecated Use {@link RequestManager#downloadOnly()} and {@link #into(int, int)}.
    */
-  @Deprecated
+/*  @Deprecated
   public FutureTarget<File> downloadOnly(int width, int height) {
     return getDownloadOnlyRequest().submit(width, height);
-  }
+  }*/
 
-  private RequestBuilder<File> getDownloadOnlyRequest() {
+ /* private RequestBuilder<File> getDownloadOnlyRequest() {
     return new RequestBuilder<>(File.class, this).apply(DOWNLOAD_ONLY_OPTIONS);
-  }
+  }*/
 
   private Priority getThumbnailPriority(Priority current) {
     switch (current) {

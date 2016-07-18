@@ -15,6 +15,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.int403.jabong.gifviewer3.glide.gifdecoder.GifDecoder;
@@ -423,6 +424,11 @@ public class Glide implements ComponentCallbacks2 {
    * @return A RequestManager for the top level application that can be used to start a load.
 
    */
+  public static RequestManager with(AppCompatActivity context) {
+    RequestManagerRetriever retriever = RequestManagerRetriever.get();
+    return retriever.get(context);
+  }
+
   public static RequestManager with(Context context) {
     RequestManagerRetriever retriever = RequestManagerRetriever.get();
     return retriever.get(context);

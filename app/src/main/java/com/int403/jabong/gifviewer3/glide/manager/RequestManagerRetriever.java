@@ -2,7 +2,9 @@ package com.int403.jabong.gifviewer3.glide.manager;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
@@ -99,11 +101,20 @@ public class RequestManagerRetriever implements Handler.Callback {
     if (context == null) {
       throw new IllegalArgumentException("You cannot start a load on a null Context");
     }
-    try{
-      return supportFragmentGet(context, ((AppCompatActivity)context).getSupportFragmentManager(), null);
-    }catch (ClassCastException e){
-      return fragmentGet(context,((Activity)context).getFragmentManager(),null);
+    else if (Util.isOnMainThread() && !(context instanceof Application)) {
+      if (context instanceof FragmentActivity) {
+        return get((FragmentActivity) context);
+      } else if (context instanceof Activity) {
+        return get((Activity) context);
+      } else if (context instanceof ContextWrapper) {
+        return get(((ContextWrapper) context).getBaseContext());
+      }
     }
+      return getApplicationManager(context);
+  }
+  public RequestManager get(AppCompatActivity appCompatActivity)
+  {
+    return fragmentGet(appCompatActivity,appCompatActivity.getFragmentManager(),null);
   }
 
   public RequestManager get(FragmentActivity activity) {

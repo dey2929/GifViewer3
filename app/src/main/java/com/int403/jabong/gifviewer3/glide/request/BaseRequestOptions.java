@@ -365,7 +365,7 @@ public abstract class BaseRequestOptions<CHILD extends BaseRequestOptions<CHILD>
    * @param signature A unique non-null {@link com.int403.jabong.gifviewer3.glide.load.Key} representing the current
    *                  state of the model that will be mixed in to the cache key.
    * @return This request builder.
-   * @see com.int403.jabong.gifviewer3.glide.signature.StringSignature
+   * see com.int403.jabong.gifviewer3.glide.signature.StringSignature
    */
   public final CHILD signature(@NonNull Key signature) {
     if (isAutoCloneEnabled) {
