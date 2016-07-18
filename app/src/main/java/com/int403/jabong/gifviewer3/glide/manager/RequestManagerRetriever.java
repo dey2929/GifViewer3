@@ -85,7 +85,6 @@ public class RequestManagerRetriever implements Handler.Callback {
           // receive lifecycle events, we must force the manager to start resumed using
           // ApplicationLifecycle.
 
-          // TODO(b/27524013): Factor out this Glide.get() call.
           Glide glide = Glide.get(context);
           applicationManager =
                   new RequestManager(
@@ -166,55 +165,6 @@ public class RequestManagerRetriever implements Handler.Callback {
     return current;
   }
 
-  /* public RequestManager get(Fragment fragment) {
-     if (fragment.getActivity() == null) {
-       throw new IllegalArgumentException(
-           "You cannot start a load on a fragment before it is attached");
-     }
-     if (Util.isOnBackgroundThread()) {
-       return get(fragment.getActivity().getApplicationContext());
-     } else {
-       FragmentManager fm = fragment.getChildFragmentManager();
-       return supportFragmentGet(fragment.getActivity(), fm, fragment);
-     }
-   }
-
-   @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-   public RequestManager get(Activity activity) {
-     if (Util.isOnBackgroundThread() || Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-       return get(activity.getApplicationContext());
-     } else {
-       assertNotDestroyed(activity);
-       android.app.FragmentManager fm = activity.getFragmentManager();
-       return fragmentGet(activity, fm, null);
-     }
-   }
-
-   @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-   private static void assertNotDestroyed(Activity activity) {
-     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && activity.isDestroyed()) {
-       throw new IllegalArgumentException("You cannot start a load for a destroyed activity");
-     }
-   }
-
-   @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-   public RequestManager get(android.app.Fragment fragment) {
-     if (fragment.getActivity() == null) {
-       throw new IllegalArgumentException(
-           "You cannot start a load on a fragment before it is attached");
-     }
-     if (Util.isOnBackgroundThread() || Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
-       return get(fragment.getActivity().getApplicationContext());
-     } else {
-       android.app.FragmentManager fm = fragment.getChildFragmentManager();
-       return fragmentGet(fragment.getActivity(), fm, fragment);
-     }
-   }
-
-
-
-
- */
   SupportRequestManagerFragment getSupportRequestManagerFragment(
           final FragmentManager fm, Fragment parentHint) {
     SupportRequestManagerFragment current =

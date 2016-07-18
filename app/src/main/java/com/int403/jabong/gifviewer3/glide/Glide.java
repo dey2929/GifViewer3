@@ -1,7 +1,6 @@
 package com.int403.jabong.gifviewer3.glide;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.ComponentCallbacks2;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -13,8 +12,6 @@ import android.os.Build;
 import android.os.ParcelFileDescriptor;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -411,11 +408,11 @@ public class Glide implements ComponentCallbacks2 {
    * <p> Any requests started using a context will only have the application level options applied
    * and will not be started or stopped based on lifecycle events. In general, loads should be
    * started at the level the result will be used in. If the resource will be used in a view in a
-   * child fragment, the load should be started with {@link #with(android.app.Fragment)}} using that
+   * child fragment, the load should be started with .. using that
    * child fragment. Similarly, if the resource will be used in a view in the parent fragment, the
-   * load should be started with {@link #with(android.app.Fragment)} using the parent fragment. In
+   * load should be started with ,, using the parent fragment. In
    * the same vein, if the resource will be used in a view in an activity, the load should be
-   * started with {@link #with(Activity)}}. </p>
+   * started with }. </p>
    *
    * <p> This method is appropriate for resources that will be used outside of the normal fragment
    * or activity lifecycle (For example in services, or for notification thumbnails). </p>
@@ -432,60 +429,6 @@ public class Glide implements ComponentCallbacks2 {
   public static RequestManager with(Context context) {
     RequestManagerRetriever retriever = RequestManagerRetriever.get();
     return retriever.get(context);
-  }
-
-  /**
-   * Begin a load with Glide that will be tied to the given {@link Activity}'s lifecycle
-   * and that uses the given {@link Activity}'s default options.
-   *
-   * @param activity The activity to use.
-   * @return A RequestManager for the given activity that can be used to start a load.
-   */
- /* public static RequestManager with(Activity activity) {
-    RequestManagerRetriever retriever = RequestManagerRetriever.get();
-    return retriever.get(activity);
-  }
-*/
-  /**
-   * Begin a load with Glide that will tied to the give
-   * {@link FragmentActivity}'s lifecycle and that uses the given
-   * {@link FragmentActivity}'s default options.
-   *
-   * @param activity The activity to use.
-   * @return A RequestManager for the given FragmentActivity that can be used to start a load.
-   */
-  /*public static RequestManager with(FragmentActivity activity) {
-    RequestManagerRetriever retriever = RequestManagerRetriever.get();
-    return retriever.get(activity);
-  }*/
-
-  /**
-   * Begin a load with Glide that will be tied to the given {@link android.app.Fragment}'s lifecycle
-   * and that uses the given {@link android.app.Fragment}'s default options.
-   *
-   * @param fragment The fragment to use.
-   * @return A RequestManager for the given Fragment that can be used to start a load.
-   */
- /* @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-  public static RequestManager with(android.app.Fragment fragment) {
-    RequestManagerRetriever retriever = RequestManagerRetriever.get();
-    return retriever.get(fragment);
-  }*/
-
-  /**
-   * Begin a load with Glide that will be tied to the given
-   * {@link Fragment}'s lifecycle and that uses the given
-   * {@link Fragment}'s default options.
-   *
-   * @return A RequestManager for the given Fragment that can be used to start a load.
-   */
- /* public static RequestManager with(Fragment fragment) {
-    RequestManagerRetriever retriever = RequestManagerRetriever.get();
-    return retriever.get(fragment);
-  }
-*/
-  public Registry getRegistry() {
-    return registry;
   }
 
   void removeFromManagers(Target<?> target) {
